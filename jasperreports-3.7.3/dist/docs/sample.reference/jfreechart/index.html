@@ -1,0 +1,345 @@
+<html xmlns:jr="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JasperReports 3.7.3 - JFreeChart Sample</title>
+<style type="text/css">
+.title {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 28px;
+	font-weight: normal;
+}
+
+.toc {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.name {
+	font-family: Courier New, Courier, serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.label {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.description {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.value {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.element {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.attribute {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.code {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="top"></a>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td align="right" colspan="2"><span class="element"><a href="../../sample.reference.html">Sample Reference</a> - <a href="../../schema.reference.html">Schema Reference</a> - <a href="../../config.reference.html">Configuration Reference</a> - <a href="http://jasperreports.sourceforge.net/api/index.html">API (Javadoc)</a></span>
+<br>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<hr size="1">
+</td>
+</tr>
+<tr valign="middle">
+<td nowrap="true"><span class="title">JasperReports - JFreeChart Sample (version 3.7.3)</span></td><td align="right"><img border="0" src="../../resources/jasperreports.png"></td>
+</tr>
+<tr>
+<td colspan="2">
+<hr size="1">
+</td>
+</tr>
+</table>
+<br>
+<span class="description"><span class="description">Shows how third-party charting APIs could be used for rendering charts as images.</span></span>
+<br>
+<br>
+<span class="element"><a href="http://sourceforge.net/projects/jasperreports/files/jasperreports/JasperReports%203.7.3/jasperreports-3.7.3-project.zip/download" target="_blank">Download All Sample Source Files</a></span>
+<br>
+<span class="element"><a href="http://jasperforge.org/scm/viewvc.php/tags/jr-3-7-3/jasperreports/demo/samples/jfreechart/?root=jasperreports" target="_blank">Browse Sample Source Files on SVN</a></span>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td style="width: 20px;">
+<br>
+</td><td>
+<br>
+</td>
+</tr>
+<tr>
+<td colspan="2"><span class="label">Main Features in This Sample</span></td>
+</tr>
+<tr>
+<td>
+<br>
+</td><td><span class="element"><a href="#jfreechart">Rendering Images Using Third Party APIs (JFreeChart Library)</a></span></td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td width="100%">
+<br>
+</td>
+</tr>
+<tr>
+<td align="right" colspan="5"><a name="jfreechart"></a><a class="toc" href="#top">top</a></td>
+</tr>
+<tr>
+<td colspan="5">
+<hr size="1">
+</td>
+</tr>
+<tr valign="top">
+<td><img border="0" src="../../resources/jr-16x16.png"></td><td colspan="4"><span class="name">Rendering Images Using Third Party APIs (JFreeChart Library)</span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td nowrap="true"><span class="label">Description / Goal</span></td><td>
+<br>
+</td><td colspan="2"><span class="description">
+How to render images using the <span class="element"><a href="http://jfree.org/jfreechart/" target="_blank">JFreeChart</a></span> library.
+    </span></td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td colspan="1"><span class="label">Since</span></td><td>
+<br>
+</td><td colspan="2"><span class="description">0.6.0</span></td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td nowrap="true" colspan="1"><span class="label">Other Samples</span></td><td>
+<br>
+</td><td colspan="2">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td><span class="element"><a href="../jcharts/index.html">/demo/samples/jcharts</a></span></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+<tr>
+<td>
+<br>
+</td><td colspan="4"><span class="description">
+<b>Rendering Graphic Objects</b>
+
+<br>
+
+<br>
+Usually, the mechanism of producing complex images, charts and other graphic objects is part of some more specialized Java libraries, 
+and does not represent one of the JasperReports goals. However, one of its important goals is to easily integrate within a 
+generated report charts, barcodes and other graphics produced by third party libraries.
+<br>
+This integration is based on the fact that great majority of graphic objects produced by these libraries can output 
+to image files or in-memory Java image objects. Then all these generated image objects can be handled by the JasperReports engine 
+using a normal image element, as described in the <span class="element"><a href="../images/index.html#images" target="_blank">Images</a></span> sample. 
+<br>
+One problem is that the content of an image element can come either directly from an image file like a JPG, 
+GIF, PNG, or can be a Scalable Vector Graphics (SVG) file that is rendered using some 
+business logic or a dedicated graphics API related to a specific charting or a barcode library. In this case,
+JasperReports treats all kind of images in a very transparent way because it relies on a special 
+interface called <span class="element"><a href="http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JRRenderable.html">JRRenderable</a></span> to offer a common way to render images.
+<br>
+The <code>JRRenderable</code> interface has a method called 
+<code>render(Graphics2D grx, Rectangle2D r)</code>, which gets called by the engine each time it needs to draw the image 
+on a given device or graphic context. This approach provides the best quality for the 
+SVG images when they must be drawn on unknown devices or zoomed into without 
+losing sharpness. 
+<br>
+Other methods specified in this interface can be used to obtain the native size of the 
+actual image that the renderer wraps or the binary data for an image that must be stored 
+in a separate file during export.
+<br>
+The library comes with a default implementation for the 
+<code>JRRenderable</code> interface that 
+wraps images that come from files or binary image data in JPG, GIF, or PNG format. 
+The <span class="element"><a href="http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JRImageRenderer.html">JRImageRenderer</a></span> class is actually a container 
+for this binary image data, which it uses to load a <code>java.awt.Image</code> object from it, 
+which it then draws on the supplied <code>java.awt.Graphics2D</code> context when the engine 
+requires it. 
+<br>
+Image renderers are serializable because inside the generated document for each image is 
+a renderer object kept as reference, which is serialized along with the whole <code>JasperPrint</code> object. 
+<br>
+When a <code>JRImageRenderer</code> instance is serialized, so is the binary image data it contains. 
+However, if the image element must be lazy loaded (see the <code>isLazy</code> attribute in the 
+<span class="element"><a href="../images/index.html#images" target="_blank">Images</a></span> sample), then the 
+engine will not load the binary image data at report-filling time. Rather, it stores inside 
+the renderer only the <code>java.lang.String</code> location of the image. The actual image data 
+is loaded only when needed for rendering at report-export or view time. 
+<br>
+To simplify the implementation of SVG image renderers, JasperReports ships with an 
+abstract renderer: <span class="element"><a href="http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JRAbstractSvgRenderer.html">JRAbstractSvgRenderer</a></span>. This 
+implementation contains the code to produce binary image data from the SVG graphic in 
+JPG format. This is needed when the image must be stored in separate files on disk or 
+delivered in binary format to a consumer (like a web browser). 
+<br>
+Specific image renderers are called when the class of the <code>&lt;imageExpression/&gt;</code> element 
+is <code>net.sf.jasperreports.engine.JRRenderable</code>. In this case the image expression value should point 
+to a <code>JRRenderable</code> object which is designated to render the image.
+<br>
+
+<br>
+
+<b>Rendering a JFreeChart Object Example</b>
+
+<br>
+
+<br>
+This sample shows how to integrate a <code>JFreeChart</code> pie chart into a report, 
+letting the JFreeChart engine to draw itself the chart.
+<br>
+In order to get both the <code>JFreeChart</code> chart and the <code>JRRenderable</code> renderer, the 
+sample contains a java scriptlet class named <code>JFreeChartScriptlet</code> in the <code>src</code> directory. 
+In its <code>afterReportInit()</code> method, a chart object is created, with all necessary information to be represented:
+<pre>
+  DefaultPieDataset dataset = new DefaultPieDataset();
+  dataset.setValue("Java", new Double(43.2));
+  dataset.setValue("Visual Basic", new Double(10.0));
+  dataset.setValue("C/C++", new Double(17.5));
+  dataset.setValue("PHP", new Double(32.5));
+  dataset.setValue("Perl", new Double(1.0));
+	
+  JFreeChart chart = 
+    ChartFactory.createPieChart3D(
+      "Pie Chart 3D Demo 1",
+      dataset,
+      true,
+      true,
+      false
+      );
+	
+  PiePlot3D plot = (PiePlot3D) chart.getPlot();
+  plot.setStartAngle(290);
+  plot.setDirection(Rotation.CLOCKWISE);
+  plot.setForegroundAlpha(0.5f);
+  plot.setNoDataMessage("No data to display");
+</pre>
+The resulting chart is passed to a <span class="element"><a href="http://jasperreports.sourceforge.net/api/net/sf/jasperreports/renderers/JCommonDrawableRenderer.html">JCommonDrawableRenderer</a></span> 
+class constructor. The <code>JCommonDrawableRenderer</code> extends the <code>JRAbstractSvgRenderer</code> class nominated above, and its 
+constructor needs an <code>org.jfree.ui.Drawable</code> object, characterized by its <code>draw()</code> method. A <code>JFreeChart</code> chart 
+represents such a <code>Drawable</code> object.
+<br>
+The <code>render()</code> method in the <code>JCommonDrawableRenderer</code> class just calls the <code>Drawable</code> object's <code>draw()</code> method, 
+and all the rendering stuff will be done by this dedicated API:
+<pre>
+  public JCommonDrawableRenderer(Drawable drawable) 
+  {
+    this.drawable = drawable;
+  }
+
+  public void render(Graphics2D grx, Rectangle2D rectangle) 
+  {
+    if (drawable != null) 
+    {
+      drawable.draw(grx, rectangle);
+    }
+  }
+</pre>
+Once the renderer gets available, one have to instruct the JasperReports engine to use it. The new renderer is passed to the engine as a scriptlet variable:
+<pre>
+  this.setVariableValue("Chart", new JCommonDrawableRenderer(chart));
+</pre>
+This variable is referred to in the <code>reports/JFreeChartReport.jrxml</code> file:
+<br>
+
+<br>
+&nbsp;&nbsp;<code>&lt;variable name="Chart" class="net.sf.jasperreports.engine.JRRenderable" calculation="System"&gt;</code>
+
+<br>
+
+<br>
+Now, let's take a look at the &lt;image/&gt; element itself:
+<br>
+
+<br>
+
+<code>
+&nbsp;&nbsp;&lt;image scaleImage="Clip" hAlign="Center" hyperlinkType="Reference"&gt;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;reportElement x="0" y="110" width="515" height="300"/&gt;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;graphicElement/&gt;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;imageExpression class="net.sf.jasperreports.engine.JRRenderable"&gt;&lt;![CDATA[$V{Chart}]]&gt;&lt;/imageExpression&gt;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;hyperlinkReferenceExpression&gt;&lt;![CDATA["http://www.jfree.org/jfreechart"]]&gt;&lt;/hyperlinkReferenceExpression&gt;
+<br>
+&nbsp;&nbsp;&lt;/image&gt;
+</code>
+
+<br>
+
+<br>
+The image expression class is <code>net.sf.jasperreports.engine.JRRenderable</code>, and its value points to the <code>Chart</code> scriptlet variable 
+defined in the &lt;scriptlet/&gt; element.
+<br>
+
+<br>
+In order to figure out more on images rendering, just test this sample by running from the command line the <code>ant test view</code> command. 
+It will generate all supported document types containing the sample report in the /build/reports directory, and then the report will be loaded and visualized into the built-in viewer.
+    </span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+</table>
+<br>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<hr size="1">
+</td>
+</tr>
+<tr>
+<td align="center"><span style="font-decoration:none;font-family:Verdana,Arial,Helvetica,sans-serif;font-size:8pt;font-style:normal;color:#000000;">&copy; 2001-2010 Jaspersoft Corporation <a style="color:#000000;" target="_blank" href="http://www.jaspersoft.com">www.jaspersoft.com</a></span></td>
+</tr>
+</table>
+</body>
+</html>

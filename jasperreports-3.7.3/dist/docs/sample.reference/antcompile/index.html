@@ -1,0 +1,414 @@
+<html xmlns:jr="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JasperReports 3.7.3 - Ant Compile Sample</title>
+<style type="text/css">
+.title {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 28px;
+	font-weight: normal;
+}
+
+.toc {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.name {
+	font-family: Courier New, Courier, serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.label {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.description {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.value {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.element {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.attribute {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.code {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="top"></a>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td align="right" colspan="2"><span class="element"><a href="../../sample.reference.html">Sample Reference</a> - <a href="../../schema.reference.html">Schema Reference</a> - <a href="../../config.reference.html">Configuration Reference</a> - <a href="http://jasperreports.sourceforge.net/api/index.html">API (Javadoc)</a></span>
+<br>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<hr size="1">
+</td>
+</tr>
+<tr valign="middle">
+<td nowrap="true"><span class="title">JasperReports - Ant Compile Sample (version 3.7.3)</span></td><td align="right"><img border="0" src="../../resources/jasperreports.png"></td>
+</tr>
+<tr>
+<td colspan="2">
+<hr size="1">
+</td>
+</tr>
+</table>
+<br>
+<span class="description"><span class="description">Shows how multiple JRXML files can be compiled in batch mode using the ANT build tool.</span></span>
+<br>
+<br>
+<span class="element"><a href="http://sourceforge.net/projects/jasperreports/files/jasperreports/JasperReports%203.7.3/jasperreports-3.7.3-project.zip/download" target="_blank">Download All Sample Source Files</a></span>
+<br>
+<span class="element"><a href="http://jasperforge.org/scm/viewvc.php/tags/jr-3-7-3/jasperreports/demo/samples/antcompile/?root=jasperreports" target="_blank">Browse Sample Source Files on SVN</a></span>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td style="width: 20px;">
+<br>
+</td><td>
+<br>
+</td>
+</tr>
+<tr>
+<td colspan="2"><span class="label">Main Features in This Sample</span></td>
+</tr>
+<tr>
+<td>
+<br>
+</td><td><span class="element"><a href="#antcompile">Compiling Multiple Report Template Files Using the Ant Build Tool</a></span></td>
+</tr>
+<tr>
+<td>
+<br>
+</td><td><span class="element"><a href="#antdecompile">Generating the JRXML Source Files for Multiple Compiled Report Template Files Using the Ant Build Tool (Decompiling)</a></span></td>
+</tr>
+<tr>
+<td colspan="2">
+<br>
+</td>
+</tr>
+<tr>
+<td colspan="2"><span class="label">Secondary Features</span></td>
+</tr>
+<tr>
+<td></td><td><span class="element"><a href="../groovy/index.html#reportcompilers">Report Compilers</a></span></td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td width="100%">
+<br>
+</td>
+</tr>
+<tr>
+<td align="right" colspan="5"><a name="antcompile"></a><a class="toc" href="#top">top</a></td>
+</tr>
+<tr>
+<td colspan="5">
+<hr size="1">
+</td>
+</tr>
+<tr valign="top">
+<td><img border="0" src="../../resources/jr-16x16.png"></td><td colspan="4"><span class="name">Compiling Multiple Report Template Files Using the Ant Build Tool</span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td nowrap="true"><span class="label">Description / Goal</span></td><td>
+<br>
+</td><td colspan="2"><span class="description">
+How to compile all your JRXML report source files at application build time using the Ant build tool.
+    </span></td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td colspan="1"><span class="label">Since</span></td><td>
+<br>
+</td><td colspan="2"><span class="description">0.4.6</span></td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td nowrap="true" colspan="1"><span class="label">Other Samples</span></td><td>
+<br>
+</td><td colspan="2">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td><span class="element"><a href="../beanshell/index.html">/demo/samples/beanshell</a></span></td>
+</tr>
+<tr>
+<td><span class="element"><a href="../groovy/index.html">/demo/samples/groovy</a></span></td>
+</tr>
+<tr>
+<td><span class="element"><a href="../java1.5/index.html">/demo/samples/java1.5</a></span></td>
+</tr>
+<tr>
+<td><span class="element"><a href="../javascript/index.html">/demo/samples/javascript</a></span></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+<tr>
+<td>
+<br>
+</td><td colspan="4"><span class="description">
+The JRXML files represent the source files for static report templates. These report templates need to be 
+prepared for use at runtime by compiling them into <code>*.jasper</code> files, which are basically serialized 
+<span class="element"><a href="http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/JasperReport.html">JasperReport</a></span> objects, ready for filling with data.
+<br>
+
+<br>
+Report template source files having the <code>*.jrxml</code> file extensions are compiled into serialized object files 
+having the <code>*.jasper</code> file extension, just like Java source files having the <code>*.java</code> file extension 
+are transformed into Java bytecode binary files with the <code>*.class</code> file extension.
+<br>
+The transformation of <code>*.jrxml</code> files into <code>*.jasper</code> files should be part of the application 
+build process, just as the compilation of <code>*.java</code> files into <code>*.class</code> files is.
+In the majority of cases, when the report templates are static and do not change at runtime (only data feed into them changes), 
+there is no point in deploying source JRXML files  with the application.
+<br>
+After all, when deploying a Java application, you deploy <code>*.class</code> files, packaged up in JARs, not source <code>*.java</code> files. 
+The same technique is applicable to JR report template files, where compiled <code>*.jasper</code> files should be created 
+at application built time and then deployed as part of the application classpath as resources.
+<br>
+
+<br>
+The JasperReports library provides a built-in Ant task for compiling source JRXML report template files into <code>*.jasper</code> files. 
+This task is represented by the <span class="element"><a href="http://jasperreports.sourceforge.net/api/net/sf/jasperreports/ant/JRAntCompileTask.html">JRAntCompilerTask</a></span> task and 
+works very similar to the Ant built-in <span class="element"><a href="http://ant.apache.org/manual/CoreTasks/javac.html" target="_blank">Javac</a></span> task.
+<br>
+
+<br>
+This task scans source folders and looks up for report template files (usually having the JRXML file extension) 
+and compiles them into <code>*.jasper</code> files which are placed into a destination folder hierarchy.
+<br>
+The destination folder tree is similar to the source folder tree, meaning that the relative location of source files from 
+the root source folder is preserved for the resulting <code>*.jasper</code> files.
+<br>
+
+<br>
+Similar to the <code>Javac</code> task, the source folders can be specified using either the <code>srcdir</code> attribute 
+of the task (when there is only one root source folder) or using a nested <code>&lt;src&gt;</code> tag (when source files 
+are scattered across multiple paths).
+
+<br>
+
+<br>
+Open the <code>build.xml</code> file in the current sample and notice how the custom Ant task called <code>jrc</code> is defined:
+<br>
+
+<br>
+
+<pre>
+&lt;taskdef name="jrc" classname="net.sf.jasperreports.ant.JRAntCompileTask"&gt; 
+  &lt;classpath refid="classpath"/&gt;
+&lt;/taskdef&gt;
+
+</pre>
+This task definition uses a <code>&lt;classpath&gt;</code> element which contains the JasperReports JAR and all its required dependencies.
+<br>
+
+<br>
+Then, the custom <code>jrc</code> task is used to compile report templates having the <code>*.jrxml</code> file extension found under 
+the sample's <code>reports</code> folder. This source folder is specified using the <code>srcdir</code> attribute of the <code>jrc</code> task 
+in the <code>compile1</code> target of the <code>build.xml</code> file:
+<br>
+
+<br>
+
+<pre>
+&lt;target name="compile1"&gt; 
+  &lt;mkdir dir="./build/reports"/&gt; 
+  &lt;jrc 
+    srcdir="./reports"
+    destdir="./build/reports"
+    tempdir="./build/reports"
+    keepjava="true"
+    xmlvalidation="true"&gt;
+   &lt;classpath refid="runClasspath"/&gt;
+   &lt;include name="**/*.jrxml"/&gt;
+  &lt;/jrc&gt;
+&lt;/target&gt; 
+
+</pre>
+The <code>compile2</code> target in the same <code>build.xml</code> file performs the same report compilation process, 
+but the source folder is specified using a nested <code>&lt;src&gt;</code> tag with filesets. The nested source tag allows compiling report 
+templates that are scattered through many different locations and are not grouped under a single root report source folder.
+<br>
+
+<br>
+
+<pre>
+&lt;target name="compile2"&gt;
+  &lt;mkdir dir="./build/reports"/&gt; 
+  &lt;jrc 
+    destdir="./build/reports"
+    tempdir="./build/reports"
+    keepjava="true"
+    xmlvalidation="true"&gt;
+   &lt;src&gt;
+    &lt;fileset dir="./reports"&gt;
+     &lt;include name="**/*.jrxml"/&gt;
+    &lt;/fileset&gt;
+   &lt;/src&gt;
+   &lt;classpath refid="runClasspath"/&gt;
+  &lt;/jrc&gt; 
+&lt;/target&gt; 
+
+</pre>
+Notice that both report compilation targets have a <code>&lt;classpath&gt;</code> nested element, used to specify the classpath used by the report 
+compiler. This so called run-classpath contains classes that are referenced inside the report templates themselves, such as scriptlet classes, 
+chart customizers and so forth.
+<br>
+In this particular sample, both source JRXML files make use of such helper classes found in the <code>src</code> folder of the samples. 
+These helper classes have to be compiled before the report templates are compiled, using the <code>javac</code> target of the <code>build.xml</code> file.
+<br>
+
+<br>
+In addition to the <code>srcdir</code> and the <code>destdir</code> attributes, the <code>jrc</code> custom Ant task shipped with JasperReports 
+supports the following attributes:
+<br>
+
+<br>
+
+<ul>
+
+<li>
+<code>compiler</code> : Name of the class that implements the <span class="element"><a href="http://jasperreports.sourceforge.net/api/net/sf/jasperreports/engine/design/JRCompiler.html">JRCompiler</a></span> interface to be used for compiling the reports (optional).</li>
+
+<li>
+<code>xmlvalidation</code> : Flag to indicate whether the XML validation should be performed on the source report template files (<code>true</code> by default).</li>
+
+<li>
+<code>tempdir</code> : Location to store the temporarily generated files (the current working directory by default).</li>
+
+<li>
+<code>keepjava</code> : Flag to indicate if the temporary Java files generated on the fly should be kept and not deleted automatically (<code>false</code> by default).</li>
+
+</ul>
+
+<br>
+
+<br>
+In our sample, we use the default report compiler, which is the JDT-based compiler, because the JDT JAR is found in the classpath. 
+This compiler works on the assumption that report expressions are Java expressions and thus it produces a Java class file dynamically containing 
+all the report expressions and compiles it using the JDT Java compiler. Normally, this report compiler does all the Java class file generation 
+and compilation in-memory and does not work with actual files on disk, which makes it very flexible and easy to deploy in all environments. 
+However, if the <code>keepjava</code> flag is turned to <code>true</code>, it will save the report's temporary Java source file on disk, 
+in the specified <code>tempdir</code>. This is useful for debugging report expressions in certain cases.
+<br>
+
+<br>
+Depending on the report expression language they are mapped to, other report compiler implementations might produce script files instead of Java files, 
+for report expression evaluation. The <code>keepjava</code> and the <code>tempdir</code> attributes will still work for them, except that the files 
+that will be kept into the temporary location will not be Java source files but script files, also helpful for debugging.
+    </span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+<tr>
+<td align="right" colspan="5"><a name="antdecompile"></a><a class="toc" href="#top">top</a></td>
+</tr>
+<tr>
+<td colspan="5">
+<hr size="1">
+</td>
+</tr>
+<tr valign="top">
+<td><img border="0" src="../../resources/jr-16x16.png"></td><td colspan="4"><span class="name">Generating the JRXML Source Files for Multiple Compiled Report Template Files Using the Ant Build Tool (Decompiling)</span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td nowrap="true"><span class="label">Description / Goal</span></td><td>
+<br>
+</td><td colspan="2"><span class="description">
+How to re-create the JRXML source files for multiple compiled report templates using the Ant build tool. 
+This is useful in cases where only the compiled <code>*.jasper</code> files of older reports are available, 
+the initial <code>*.jrxml</code> source files being lost.
+    </span></td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td colspan="1"><span class="label">Since</span></td><td>
+<br>
+</td><td colspan="2"><span class="description">3.7.1</span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+<tr>
+<td>
+<br>
+</td><td colspan="4"><span class="description">
+[Under Construction]
+    </span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+</table>
+<br>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<hr size="1">
+</td>
+</tr>
+<tr>
+<td align="center"><span style="font-decoration:none;font-family:Verdana,Arial,Helvetica,sans-serif;font-size:8pt;font-style:normal;color:#000000;">&copy; 2001-2010 Jaspersoft Corporation <a style="color:#000000;" target="_blank" href="http://www.jaspersoft.com">www.jaspersoft.com</a></span></td>
+</tr>
+</table>
+</body>
+</html>

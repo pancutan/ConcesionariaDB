@@ -1,0 +1,385 @@
+<html xmlns:jr="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JasperReports 3.7.3 - Rotation Sample</title>
+<style type="text/css">
+.title {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 28px;
+	font-weight: normal;
+}
+
+.toc {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.name {
+	font-family: Courier New, Courier, serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.label {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.description {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.value {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.element {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.attribute {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.code {
+	font-family: Courier New, Courier, serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="top"></a>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td align="right" colspan="2"><span class="element"><a href="../../sample.reference.html">Sample Reference</a> - <a href="../../schema.reference.html">Schema Reference</a> - <a href="../../config.reference.html">Configuration Reference</a> - <a href="http://jasperreports.sourceforge.net/api/index.html">API (Javadoc)</a></span>
+<br>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<hr size="1">
+</td>
+</tr>
+<tr valign="middle">
+<td nowrap="true"><span class="title">JasperReports - Rotation Sample (version 3.7.3)</span></td><td align="right"><img border="0" src="../../resources/jasperreports.png"></td>
+</tr>
+<tr>
+<td colspan="2">
+<hr size="1">
+</td>
+</tr>
+</table>
+<br>
+<span class="description"><span class="description">Shows how rotated text could be used in report templates.</span></span>
+<br>
+<br>
+<span class="element"><a href="http://sourceforge.net/projects/jasperreports/files/jasperreports/JasperReports%203.7.3/jasperreports-3.7.3-project.zip/download" target="_blank">Download All Sample Source Files</a></span>
+<br>
+<span class="element"><a href="http://jasperforge.org/scm/viewvc.php/tags/jr-3-7-3/jasperreports/demo/samples/rotation/?root=jasperreports" target="_blank">Browse Sample Source Files on SVN</a></span>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td style="width: 20px;">
+<br>
+</td><td>
+<br>
+</td>
+</tr>
+<tr>
+<td colspan="2"><span class="label">Main Features in This Sample</span></td>
+</tr>
+<tr>
+<td>
+<br>
+</td><td><span class="element"><a href="#rotation">Rotated Text</a></span></td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td><img height="1" width="20" border="0" src="../../resources/px.gif"></td><td width="100%">
+<br>
+</td>
+</tr>
+<tr>
+<td align="right" colspan="5"><a name="rotation"></a><a class="toc" href="#top">top</a></td>
+</tr>
+<tr>
+<td colspan="5">
+<hr size="1">
+</td>
+</tr>
+<tr valign="top">
+<td><img border="0" src="../../resources/jr-16x16.png"></td><td colspan="4"><span class="name">Rotated Text</span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td nowrap="true"><span class="label">Description / Goal</span></td><td>
+<br>
+</td><td colspan="2"><span class="description">
+How to rotate text elements.
+    </span></td>
+</tr>
+<tr valign="top">
+<td>
+<br>
+</td><td colspan="1"><span class="label">Since</span></td><td>
+<br>
+</td><td colspan="2"><span class="description">0.5.2</span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+<tr>
+<td>
+<br>
+</td><td colspan="4"><span class="description">
+<b>Rotating paragraphs</b>
+
+<br>
+
+<br>
+There are three possibilities to rotate a text paragraph:
+<ul>
+
+<li>to the left</li>
+
+<li>to the right</li>
+
+<li>upside-down</li>
+
+</ul>
+Any rotation above changes both the text's flow direction and the paragraph's relative position within its textbox container. In these conditions horizontal and vertical alignments should be reevaluated.
+<br>
+For example, let's consider a paragraph with <code>Left</code> horizontal alignment and <code>Top</code> vertical alignment. If this paragraph is rotated to the left, then it will be positioned into the left bottom area of its textbox container. 
+The vertical alignment will change from <code>Top</code> to <code>Bottom</code>, and the text will flow from bottom to top.
+<br>
+Performing various combinations between horizontal alignment, vertical alignment and text's flow direction, leads to a large set of paragraph positions relative to its textbox container.
+<br>
+In JasperReports calculations related to text rotation are done at export time, based on the text element's <code>textAlignment</code>, <code>verticalAlignment</code> and <code>rotation</code> attributes values.
+<br>
+
+<br>
+
+<b>Examples of combining horizontal alignment, vertical alignment and rotation in a &lt;textElement /&gt; element.</b>
+
+<br>
+
+<br>
+Values allowed for the horizontal alignment are: <code>Left</code>, <code>Center</code>, <code>Right</code> and <code>Justified</code>. By default, horizontal alignment is set to <code>Left</code>.
+<br>
+Values allowed for the vertical alignment are: <code>Top</code>, <code>Middle</code> and <code>Bottom</code>. By default, vertical alignment is set to <code>Top</code>.
+<br>
+Values allowed for the text rotation are: <code>None</code>, <code>Left</code>, <code>Right</code> and <code>UpsideDown</code>. By default, text rotation is set to <code>None</code>.
+<br>
+Below are some possible combinations between them:
+<ul>
+
+<li>
+<code>textAlignment="Left"</code>
+</li>
+
+<li>
+<code>verticalAlignment="Top"</code>
+</li>
+
+<li>
+<code>rotation="Left"</code>
+</li>
+
+</ul>
+This is the case already described in the <b>Rotating paragraphs</b> section above. The resulting paragraph will be horizontally aligned left, vertically aligned bottom, and the text will flow from bottom to top.
+<br>
+
+<ul>
+
+<li>
+<code>textAlignment="Center"</code>
+</li>
+
+<li>
+<code>verticalAlignment="Bottom"</code>
+</li>
+
+<li>
+<code>rotation="Left"</code>
+</li>
+
+</ul>
+The resulting paragraph will be horizontally aligned right, vertically aligned middle, and the text will flow from bottom to top.
+<br>
+
+<ul>
+
+<li>
+<code>textAlignment="Right"</code>
+</li>
+
+<li>
+<code>verticalAlignment="Middle"</code>
+</li>
+
+<li>
+<code>rotation="Left"</code>
+</li>
+
+</ul>
+The resulting paragraph will be horizontally aligned center, vertically aligned top, and the text will flow from bottom to top.
+<br>
+
+<ul>
+
+<li>
+<code>textAlignment="Left"</code>
+</li>
+
+<li>
+<code>verticalAlignment="Middle"</code>
+</li>
+
+<li>
+<code>rotation="UpsideDown"</code>
+</li>
+
+</ul>
+The resulting paragraph will be horizontally aligned right, vertically aligned middle, and the text will flow from right to left.
+<br>
+
+<ul>
+
+<li>
+<code>textAlignment="Right"</code>
+</li>
+
+<li>
+<code>verticalAlignment="Top"</code>
+</li>
+
+<li>
+<code>rotation="UpsideDown"</code>
+</li>
+
+</ul>
+The resulting paragraph will be horizontally aligned left, vertically aligned bottom, and the text will flow from right to left.
+<br>
+
+<ul>
+
+<li>
+<code>textAlignment="Right"</code>
+</li>
+
+<li>
+<code>verticalAlignment="Middle"</code>
+</li>
+
+<li>
+<code>rotation="Right"</code>
+</li>
+
+</ul>
+The resulting paragraph will be horizontally aligned center, vertically aligned bottom, and the text will flow from top to bottom.
+<br>
+
+<ul>
+
+<li>
+<code>textAlignment="Center"</code>
+</li>
+
+<li>
+<code>verticalAlignment="Bottom"</code>
+</li>
+
+<li>
+<code>rotation="Right"</code>
+</li>
+
+</ul>
+The resulting paragraph will be horizontally aligned left, vertically aligned middle, and the text will flow from top to bottom.
+<br>
+
+<ul>
+
+<li>
+<code>textAlignment="Left"</code>
+</li>
+
+<li>
+<code>verticalAlignment="Top"</code>
+</li>
+
+<li>
+<code>rotation="Right"</code>
+</li>
+
+</ul>
+The resulting paragraph will be horizontally aligned right, vertically aligned top, and the text will flow from top to bottom.
+<br>
+
+<br>
+Below is a code snippet showing how to set text alignment and rotation in a static text. In this case the paragraph is horizontally centered, vertically aligned to bottom and rotated to the left:
+<br>
+
+<br>
+
+<code>
+&nbsp;&nbsp;&lt;staticText&gt;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;reportElement mode="Opaque" x="100" y="0" width="90" height="350" backcolor="#c0c0c0"/&gt;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;textElement textAlignment="Center" verticalAlignment="Bottom" rotation="Left"&gt;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;font size="14"/&gt;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/textElement&gt;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;text&gt;&lt;![CDATA[rotation="Left" textAlignment="Center" verticalAlignment="Bottom"]]&gt;&lt;/text&gt;
+<br>
+&nbsp;&nbsp;&lt;/staticText&gt;
+</code>
+
+<br>
+
+<br>
+In order to figure out more on text rotation behavior, just test this sample by running from the command line the <code>ant test view</code> command. 
+It will generate all supported document types containing the sample report in the /build/reports directory, and then the generated report will be open with JasperReports internal viewer.
+    </span></td>
+</tr>
+<tr>
+<td colspan="5">
+<br>
+</td>
+</tr>
+</table>
+<br>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<hr size="1">
+</td>
+</tr>
+<tr>
+<td align="center"><span style="font-decoration:none;font-family:Verdana,Arial,Helvetica,sans-serif;font-size:8pt;font-style:normal;color:#000000;">&copy; 2001-2010 Jaspersoft Corporation <a style="color:#000000;" target="_blank" href="http://www.jaspersoft.com">www.jaspersoft.com</a></span></td>
+</tr>
+</table>
+</body>
+</html>
